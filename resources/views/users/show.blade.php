@@ -4,7 +4,7 @@
 
 @section('content')
     <h2>User Details</h2>
-    
+
     <a href="{{ route('users.index') }}">Users list</a>
 
     <p><strong>Name:</strong> {{$user -> name}}</p>
