@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use App\Constants\UserConstants;
 
 class UserPolicy
 {
@@ -38,7 +39,9 @@ class UserPolicy
      * Determine whether the user can update the model.
      */
     public function update(User $user, User $model): bool
-    {
+    {        if (array_search($user->role, UserConstants::USER_ROLES) >= array_search('Editor', UserConstants::USER_ROLES)){
+            return true;
+        }
         return $user->id === $model->id || $user->id === $model->creator_user_id;
     }
 
@@ -46,7 +49,9 @@ class UserPolicy
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, User $model): bool
-    {
+    {       if (array_search($user->role, UserConstants::USER_ROLES) >= array_search('SuperAdmin', UserConstants::USER_ROLES)){
+            return true;
+        }
         return $user->id === $model->id || $user->id === $model->creator_user_id;
     }
 
@@ -55,6 +60,9 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
+      if (array_search($user->role, UserConstants::USER_ROLES) >= array_search('SuperAdmin', UserConstants::USER_ROLES)){
+            return true;
+        }
         return $user->id === $model->id || $user->id === $model->creator_user_id;
     }
 
@@ -63,6 +71,9 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
+      if (array_search($user->role, UserConstants::USER_ROLES) >= array_search('SuperAdmin', UserConstants::USER_ROLES)){
+            return true;
+        }
         return $user->id === $model->id || $user->id === $model->creator_user_id;
     }
 }
