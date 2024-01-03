@@ -1,17 +1,21 @@
-@extends('layouts.users')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('User Details') }}
+        </h2>
+    </x-slot>
 
-@section('routeName', 'show')
-
-@section('content')
-    <h2>User Details</h2>
-
-    <a href="{{ route('users.index') }}">Users list</a>
+    <button>
+        <a href="{{ route('users.index') }}">Users list</a>
+    </button>
 
     <p><strong>Name:</strong> {{$user -> name}}</p>
     <p><strong>Email:</strong> {{$user -> email}}</p>
     <p><strong>Actions:</strong></p>
 
-    <a href="{{ route('users.edit', $user) }}">Edit</a>
+    <button>
+        <a href="{{ route('users.edit', $user) }}">Edit</a>
+    </button>
 
     <form action="{{ route('users.destroy', $user) }}" method="POST">
         @csrf
@@ -27,4 +31,4 @@
             }
         }
     </script>
-@endsection
+</x-app-layout>
