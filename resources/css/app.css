@@ -20,7 +20,7 @@
 }
 
 
-.edit-button {
+.action-button {
     @apply default-button hover:bg-cyan-600 hover:text-white
 }
 
@@ -34,4 +34,8 @@
 
 .form-group {
     @apply flex items-center justify-between
+}
+
+.alert-error {
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4
 }

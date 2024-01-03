@@ -13,7 +13,7 @@
                         <a href="{{ route('users.index') }}">&larr; Users list</a>
                     </button>
 
-                    <button class="edit-button w-1/5">
+                    <button class="action-button w-1/5">
                         <a href="{{ route('users.edit', $user) }}">Edit</a>
                     </button>
                 </div>
@@ -34,7 +34,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+          
         </div>
     </div>
 
